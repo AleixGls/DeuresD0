@@ -53,6 +53,18 @@ def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
+    r = 225
+    for i in range(9):
+        if i % 2 == 0:
+            pygame.draw.circle(screen, RED, (350,250), r)
+        else:
+            pygame.draw.circle(screen, WHITE, (350,250), r)
+        r -= 25
+
+    r = 225
+    for i in range(9):
+        pygame.draw.circle(screen, BLACK, (350,250), r, 5)
+        r -= 25
 
     pygame.display.update()
 
