@@ -4,6 +4,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import utils
 import sys
+import random
 
 #---|COLORS|-----------------------------------------------------------------------------------------
 WHITE = (255, 255, 255)
@@ -24,6 +25,16 @@ pygame.display.set_caption('Window Title')
 
 #---|APLICACIO|--------------------------------------------------------------------------------------
 def main():
+    global coordenades
+
+    window_width, window_height = screen.get_size()
+    coordenades = []
+    for i in range(10):
+        coordenades.append(
+            (random.randint(0, window_width), 
+            random.randint(0, window_height))
+        )
+
     is_looping = True
 
     while is_looping:
@@ -53,6 +64,7 @@ def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
+    pygame.draw.polygon(screen, BLACK, coordenades, 5)
 
     pygame.display.update()
 
