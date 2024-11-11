@@ -53,6 +53,14 @@ def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
+    pygame.draw.rect(screen, PINK, (150,200 , 50,50), 5)
+
+    pygame.draw.polygon(screen, GREEN, [(250,250),(275,200),(300,250)], 5)
+
+    pygame.draw.line(screen, BLUE, (350,200), (400,250), 5)
+    pygame.draw.line(screen, BLUE, (350,250), (400,200), 5)
+
+    pygame.draw.circle(screen, RED, (475,225), 25, 5)
 
     pygame.display.update()
 
