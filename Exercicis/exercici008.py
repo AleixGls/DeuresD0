@@ -48,10 +48,37 @@ def app_events():
 def app_run():
     pass
 
+
+
 #---|DIBUIX|-----------------------------------------------------------------------------------------
+colors = [(127, 184, 68), (240, 187, 64), (226, 137, 50), (202, 73, 65), (135, 65, 152), (75, 154, 217)]
+board = [
+    [0, 1, 2, 3, 4, 5, 4, 3],
+    [1, 2, 3, 4, 5, 4, 3, 2],
+    [2, 3, 4, 5, 4, 3, 2, 1],
+    [3, 4, 5, 4, 3, 2, 1, 0],
+    [4, 5, 4, 3, 2, 1, 0, 1],
+    [5, 4, 3, 2, 1, 0, 1, 2],
+    [4, 3, 2, 1, 0, 1, 2, 3],
+    [3, 2, 1, 0, 1, 2, 3, 4],
+]
+
+
+
 def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
+
+    x=50
+    y=50
+    for row in range(8):
+        board_row = board[row]
+        for column in range(8):
+            board_colum = board_row[column]
+            pygame.draw.rect(screen, colors[board_colum], (x,y, 50,50))
+            x += 50
+        x = 50
+        y += 50
 
 
     pygame.display.update()

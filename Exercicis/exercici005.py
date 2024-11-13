@@ -46,27 +46,33 @@ def app_events():
 
 #---|CALCULS|----------------------------------------------------------------------------------------
 def app_run():
-    global center_x, center_y
-
-    # Centre de la pantalla
-    center_x, center_y = int(screen.get_width() / 2), int(screen.get_height() / 2)
-
+    pass
 
 #---|DIBUIX|-----------------------------------------------------------------------------------------
 def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
-    for _ in range(25):
-        pygame.draw.line(
-            screen, 
-            RED, 
-            (center_x,center_y),(center_x,center_y)
-        )
-        if _ % 2 == 0:
-            center_x += 15
-        else:
-            center_y += 15
+    center_x, center_y = int(screen.get_width() / 2), int(screen.get_height() / 2)
+    x, y = center_x, center_y
+    step = 15
+    direction = 0
+
+    for _ in range(25):  
+        if direction == 0:
+            end_x, end_y = x + step, y
+        elif direction == 1:
+            end_x, end_y = x, y - step
+        elif direction == 2:
+            end_x, end_y = x - step, y
+        elif direction == 3:
+            end_x, end_y = x, y + step
+        
+        pygame.draw.line(screen, RED, (x, y), (end_x, end_y), 4)
+        
+        x, y = end_x, end_y
+        direction = (direction + 1) % 4
+        step += 15
 
     pygame.display.update()
 

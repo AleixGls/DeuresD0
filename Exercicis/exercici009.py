@@ -49,10 +49,38 @@ def app_run():
     pass
 
 #---|DIBUIX|-----------------------------------------------------------------------------------------
+dades = [ 
+  {'nom': 'Pelut', 'any': 2018, 'pes': 6.5, 'especie': 'Gos'},
+  {'nom': 'Pelat', 'any': 2020, 'pes': 5.0, 'especie': 'Gos'},
+  {'nom': 'Mia', 'any': 2022, 'pes': 3.0, 'especie': 'Gat'},
+  {'nom': 'Nemo', 'any': 2003, 'pes': 0.1, 'especie': 'Peix'},
+  {'nom': 'Mickey', 'any': 1928, 'pes': 0.5, 'especie': 'Ratolí'},
+  {'nom': 'Donald', 'any': 1934, 'pes': 0.5, 'especie': 'Ànec'} 
+]
+
 def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
+    fontArial1 = pygame.font.SysFont("Arial", 18)
+    fontArial2 = pygame.font.SysFont("Arial", 16)
+
+    y=100
+    for q in range (0, len(dades)):
+        pygame.draw.rect(screen, WHITE, (150,y, 200,25),)
+        pygame.draw.line(screen, BLACK, (150,y), (350,y),2)
+
+        text = fontArial1.render(dades[q]["nom"], True, BLACK)
+        screen.blit(text, (155, y+2))
+
+        text = fontArial2.render(str(dades[q]["any"]), True, (50,120,200))
+        screen.blit(text, (255, y+2))
+
+        text = fontArial2.render(dades[q]["especie"], True, (50,120,200))
+        screen.blit(text, (305, y+2))
+
+        y += 25
+        pygame.draw.line(screen, BLACK, (150,y), (350,y),2)
 
     pygame.display.update()
 

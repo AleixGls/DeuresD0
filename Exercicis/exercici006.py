@@ -53,6 +53,24 @@ def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
+    x=50
+    y=50
+    for row in range(8):
+        if row % 2 == 0:
+            color = GRAY
+        else:
+            color = BLACK
+        for column in range(8):
+            pygame.draw.rect(screen, color, (x,y, 50,50))
+            x += 50
+            if color == GRAY:
+                color = BLACK
+            elif color == BLACK:
+                color = GRAY
+        x = 50
+        y += 50
+           
+
 
     pygame.display.update()
 

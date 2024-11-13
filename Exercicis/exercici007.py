@@ -3,6 +3,7 @@ import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 import pygame
 import utils
+import math
 import sys
 
 #---|COLORS|-----------------------------------------------------------------------------------------
@@ -49,10 +50,36 @@ def app_run():
     pass
 
 #---|DIBUIX|-----------------------------------------------------------------------------------------
+def draw_polygon(screen, color, center, radius, num_vertices, angle_offset=(math.pi / 3)):
+    points = [
+        (
+            center[0] + radius * math.cos(angle_offset + i * 2 * math.pi / num_vertices),
+            center[1] + radius * math.sin(angle_offset + i * 2 * math.pi / num_vertices)
+        )
+        for i in range(num_vertices)
+    ]
+    pygame.draw.polygon(screen, color, points)
+
 def app_draw():
     screen.fill(WHITE)
     utils.draw_grid(pygame, screen, 50)
 
+    colors = [(127, 184, 68), (240, 187, 64), (226, 137, 50), (202, 73, 65), (135, 65, 152), (75, 154, 217)]
+
+    x=50
+    for q in range(0, len(colors)):
+        pygame.draw.rect(screen, colors[q], (x,50,50,50))
+        pygame.draw.circle(screen, colors[q], (x+25,175), 25, 2)
+        x += 100
+    
+    x=75
+    G=0
+    for q in range(0, len(colors)):
+        draw_polygon(screen, (G,G,G), (x, 275), 25, 3)
+        draw_polygon(screen, (G,G,G), (x, 375), 25, 5)
+
+        G += 25
+        x += 100
 
     pygame.display.update()
 
